@@ -1,29 +1,23 @@
-class Solution {
+class Solution{
 public:
-    Node* copyRandomList(Node* head) {
-        if (!head) return nullptr;
+    Node* copyRandomList(Node* head){
+        if (head ==nullptr)
+            return nullptr;
+        unordered_map<Node*, Node*> mp;
         Node* curr = head;
-        while (curr) {
+        while (curr != nullptr) {
             Node* copy = new Node(curr->val);
-            copy->next = curr->next;
-            curr->next = copy;
-            curr = copy->next;
-        }
-        curr = head;
-        while (curr) {
-            if (curr->random) curr->next->random = curr->random->next;
-            curr = curr->next->next;
-        }
-        curr = head;
-        Node* copyHead = head->next;
-        Node* copyCurr = copyHead;
-        while (curr) {
-            curr->next = curr->next->next;
-            copyCurr->next = (copyCurr->next) ? copyCurr->next->next : nullptr;
+            mp[curr] = copy;
             curr = curr->next;
-            copyCurr = copyCurr->next;
         }
+        curr = head;
+        while (curr !=nullptr){
+            Node* copy = mp[curr];
+            copy->next = (curr->next !=nullptr) ? mp[curr->next] : nullptr;
+            copy->random = (curr->random != nullptr) ? mp[curr->random] : nullptr;
 
-        return copyHead;
+            curr = curr->next;
+        }
+        return mp[head];
     }
 };
