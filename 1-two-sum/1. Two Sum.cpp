@@ -6,11 +6,12 @@ public:
             int current=nums[i];
             int needed=target-current;
             if(mp.find(needed)!=mp.end()){
-                return {mp[needed],i};
+                return{mp[needed],i}; 
             }
             mp[current]=i;
         }
-        return {};
+        return{};
+
         
     }
 };
