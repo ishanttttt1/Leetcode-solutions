@@ -1,6 +1,6 @@
 class Solution{
 public:
-    vector<int>productExceptSelf(vector<int>& nums){
+    vector<int> productExceptSelf(vector<int>& nums){
         vector<int>ans(nums.size(),1);
         int prefix=1;
         for(int i=0;i<nums.size();i++){
@@ -13,5 +13,6 @@ public:
             suffix=suffix*nums[i];
         }
         return ans;
+        
     }
 };
