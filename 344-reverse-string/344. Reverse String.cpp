@@ -7,7 +7,6 @@ public:
             swap(s[start],s[end]);
             start++;
             end--;
-        }
-        
+        } 
     }
 };
